@@ -15,6 +15,7 @@ namespace HumJ.Iot.Ft5436
         private readonly int reset;
         private readonly int interrupt;
 
+        private static readonly byte[] command = new byte[1];
         private byte[] buffer = new byte[64];
 
         public Ft5436(I2cDevice i2c, GpioController gpio, int reset, int interrupt)
@@ -52,8 +53,7 @@ namespace HumJ.Iot.Ft5436
 
         private void OnInterrupt(object sender, PinValueChangedEventArgs pinValueChangedEventArgs)
         {
-            i2c.WriteByte(0x00);
-            i2c.Read(buffer);
+            i2c.WriteRead(command, buffer);
 
             var touchEvent = new TouchEvent(buffer);
             OnTouch?.Invoke(this, touchEvent);
