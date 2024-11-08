@@ -1,6 +1,5 @@
 ﻿using System.Device.Gpio;
 using System.Device.I2c;
-using System.Numerics;
 
 namespace HumJ.Iot.Ft5436
 {
@@ -60,38 +59,6 @@ namespace HumJ.Iot.Ft5436
 
             var touchEvent = new TouchEvent(buffer);
             OnTouch?.Invoke(this, touchEvent);
-        }
-
-        public class TouchEvent
-        {
-            public int Status { get; }
-            public int PointCount { get; }
-            public TouchPoint[] Points { get; }
-
-            public TouchEvent(Span<byte> buffer)
-            {
-                Status = (buffer[0] << 16) | (buffer[1] << 8) | buffer[2];
-                PointCount = buffer[2];
-
-                var points = new List<TouchPoint>();
-                for (var i = 3; buffer[i] != 0xFF; i += 6)
-                {
-                    points.Add(new TouchPoint(buffer.Slice(i, 6)));
-                }
-
-                Points = [.. points];
-            }
-        }
-
-        public class TouchPoint(Span<byte> buffer)
-        {
-            public bool Down { get; } = (buffer[0] & 0x80) != 0;
-            public bool Up { get; } = (buffer[0] & 0x40) != 0;
-            public int Id { get; } = buffer[2] >> 4;
-
-            public Vector2 Position { get; } = new Vector2(((buffer[0] & 0x0F) << 8) | buffer[1], ((buffer[2] & 0x0F) << 8) | buffer[3]);
-            public int Pressure { get; } = buffer[4];
-            public int Size { get; } = buffer[5] >> 4;
         }
     }
 }
