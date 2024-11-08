@@ -1,9 +1,10 @@
 ﻿using System.Device.Gpio;
 using System.Device.I2c;
+using System.Numerics;
 
 namespace HumJ.Iot.Ft5436
 {
-    public class Ft5436 : IDisposable
+    public partial class Ft5436 : IDisposable
     {
         public const byte I2cAddress = 0x38;
 
@@ -29,14 +30,16 @@ namespace HumJ.Iot.Ft5436
             gpio.OpenPin(reset, PinMode.Output);
             gpio.OpenPin(interrupt, PinMode.Input);
 
-            gpio.Write(reset, PinValue.High);
             gpio.Write(reset, PinValue.Low);
+            gpio.Write(reset, PinValue.High);
 
             gpio.RegisterCallbackForPinValueChangedEvent(interrupt, PinEventTypes.Falling, OnInterrupt);
         }
 
         public void Dispose()
         {
+            OnTouch = null;
+
             gpio.UnregisterCallbackForPinValueChangedEvent(interrupt, OnInterrupt);
             gpio.ClosePin(interrupt);
             gpio.ClosePin(reset);
@@ -84,8 +87,9 @@ namespace HumJ.Iot.Ft5436
         {
             public bool Down { get; } = (buffer[0] & 0x80) != 0;
             public bool Up { get; } = (buffer[0] & 0x40) != 0;
-            public int X { get; } = ((buffer[0] & 0x0F) << 8) | buffer[1];
-            public int Y { get; } = (buffer[2] << 8) | buffer[3];
+            public int Id { get; } = buffer[2] >> 4;
+
+            public Vector2 Position { get; } = new Vector2(((buffer[0] & 0x0F) << 8) | buffer[1], ((buffer[2] & 0x0F) << 8) | buffer[3]);
             public int Pressure { get; } = buffer[4];
             public int Size { get; } = buffer[5] >> 4;
         }
