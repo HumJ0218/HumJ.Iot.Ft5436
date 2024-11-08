@@ -61,9 +61,9 @@ namespace HumJ.Iot.Ft5436
 
         public class TouchEvent
         {
-            public int Status { get; private set; }
-            public int PointCount { get; private set; }
-            public TouchPoint[] Points { get; private set; }
+            public int Status { get; }
+            public int PointCount { get; }
+            public TouchPoint[] Points { get; }
 
             public TouchEvent(Span<byte> buffer)
             {
