@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35208.52
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HumJ.Iot.Ft5436", "HumJ.Iot.Ft5436\HumJ.Iot.Ft5436.csproj", "{40F30226-1AD7-4633-A2E9-41F8882DAB0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{D03C06A4-7C95-434F-8276-E950E79FFEB8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{40F30226-1AD7-4633-A2E9-41F8882DAB0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40F30226-1AD7-4633-A2E9-41F8882DAB0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40F30226-1AD7-4633-A2E9-41F8882DAB0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40F30226-1AD7-4633-A2E9-41F8882DAB0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D03C06A4-7C95-434F-8276-E950E79FFEB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D03C06A4-7C95-434F-8276-E950E79FFEB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D03C06A4-7C95-434F-8276-E950E79FFEB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D03C06A4-7C95-434F-8276-E950E79FFEB8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6FE0886C-F408-4BF8-AB83-30C9299DE92E}
+	EndGlobalSection
+EndGlobal
