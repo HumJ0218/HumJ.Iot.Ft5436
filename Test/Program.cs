@@ -11,12 +11,7 @@ var i2c = I2cDevice.Create(new I2cConnectionSettings(1, Ft5436.I2cAddress));
 var ft5436 = new Ft5436(i2c, gpio, reset, interrupt);
 
 Console.Clear();
-while (true)
-{
-    ft5436.OnTouch += Ft5436_OnTouch;
-    Console.ReadLine();
-    ft5436.OnTouch -= Ft5436_OnTouch;
-}
+Console.ReadLine();
 
 static void Ft5436_OnTouch(object? sender, Ft5436.TouchEvent touchEvent)
 {
